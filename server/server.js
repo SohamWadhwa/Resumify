@@ -65,12 +65,12 @@ app.post("/upload", upload.single("resume"), (req, res) => {
     async (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
-        return res.status(500).send("Error extracting text");
+        return res.status(500).json({ error: "Error extracting text" });
       }
       if (stderr) {
         console.error(`stderr: ${stderr}`);
-        return res.status(500).send("Error extracting text");
-      }
+        return res.status(500).json({ error: "Error extracting text" });
+      }      
 
       const extractedText = stdout.trim();
 
