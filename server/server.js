@@ -20,6 +20,16 @@ const __dirname = path.dirname(__filename);
 const pythonScriptPath = path.join(__dirname, 'python', 'extract_text.py');
 const pythonPath = path.join(__dirname, 'venv', 'Scripts', 'python');
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, "../dist")));
+  
+  // For any other routes, serve index.html (React Router will handle routing)
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
+  });
+}
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, 'uploads'));  
