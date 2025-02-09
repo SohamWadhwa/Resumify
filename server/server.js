@@ -7,7 +7,9 @@ import { fileURLToPath } from "url";
 import mime from "mime-types"; 
 import Insight from "./Analyse.js";
 import generateATS from "./ATS.js";
-
+import dotenv from "dotenv";
+dotenv.config({ path: path.join(path.resolve(), '/.env') });
+const port = process.env.PORT || 5000;
 const app = express();
 
 // Enable CORS for requests from your React app on port 5173
@@ -100,6 +102,6 @@ app.post("/upload", upload.single("resume"), (req, res) => {
 //   }
 // });
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log("Server running on http://localhost:5000");
 });
