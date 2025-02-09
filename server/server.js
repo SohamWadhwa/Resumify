@@ -13,7 +13,8 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 // Enable CORS for requests from your React app on port 5173
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: process.env.NODE_ENV === "production" ? "https://resumify-1.onrender.com" : "http://localhost:5173" }));
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
