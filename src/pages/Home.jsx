@@ -39,7 +39,7 @@ export default function Home() {
     const formData = new FormData();
     formData.append("resume", file);
   
-    fetch("http://localhost:5000/upload", {
+    fetch("https://resumify-1.onrender.com/upload", {
       method: "POST",
       body: formData,
     })
